@@ -2,14 +2,16 @@ import "dotenv/config";
 import app from "./src/app";
 import db from "./src/config/mongo";
 
+const PORT = process.env.PORT || 3002;
+
 db()
-  .then(() => console.log('🟢 DB connection succesfull'))
+  .then(() => console.log('🟢 DB connection succesfull 🟢'))
   .catch((error) => {
-    console.log('--- 🔴 DB ERROR ---');
+    console.log('🔴 --- DB ERROR --- 🔴');
     console.log(error);
     console.log('-------------------');
   });
 
-app.listen(process.env.PORT || 3001, () => {
-  console.log(`🟢 Server listening at ${process.env.PORT}`);
+app.listen(PORT, () => {
+  console.log(`🟢 Server listening at ${PORT} 🟢`);
 });
