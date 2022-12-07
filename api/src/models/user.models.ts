@@ -20,6 +20,11 @@ const UserSchema = new Schema<User>(
       type: String,
       unique: true,
     },
+    role: {
+      required: true,
+      type: String,
+      default: "User",
+    },
   },
   {
     versionKey: false,
@@ -27,5 +32,5 @@ const UserSchema = new Schema<User>(
   }
 );
 
-const UserModel = model('users', UserSchema);
+const UserModel = model("users", UserSchema);
 export default UserModel;

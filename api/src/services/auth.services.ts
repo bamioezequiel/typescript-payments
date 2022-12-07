@@ -4,7 +4,13 @@ import UserModel from "../models/user.models";
 import { encrypt, verifyPassword } from "../utils/bcrypt.handle";
 import { generateToken } from "../utils/jwt.handle";
 
-export const registerNewUser = async ({ name, lastname, email, password }: User) => {
+export const registerNewUser = async ({
+  name,
+  lastname,
+  email,
+  password,
+  role,
+}: User) => {
   const checkIs = await UserModel.findOne({ email });
   if (checkIs) throw "USER_ALREADY";
 
@@ -14,23 +20,29 @@ export const registerNewUser = async ({ name, lastname, email, password }: User)
     lastname,
     email,
     password: passHash,
+    role
   });
 
   return user;
 };
 
 export const loginUser = async ({ email, password }: Auth) => {
-    const checkIs = await UserModel.findOne({email});
-    if(!checkIs) throw 'USER_NOT_FOUND';
+  const checkIs = await UserModel.findOne({ email });
+  if (!checkIs) throw "USER_NOT_FOUND";
 
-    const passHash = checkIs.password;
-    const isCorrect = await verifyPassword(password, passHash)
-    if(!isCorrect) throw 'PASSWORD_INCORRECT';
-    
-    const token = generateToken(checkIs.email);
-    return {
-        token,
-        user: checkIs,
-    };
+  const passHash = checkIs.password;
+  const isCorrect = await verifyPassword(password, passHash);
+  if (!isCorrect) throw "PASSWORD_INCORRECT";
 
+  const token = generateToken(checkIs.email);
+
+  return {
+    token,
+    user: {
+      _id: checkIs._id,
+      email: checkIs.email,
+      name: checkIs.name,
+      lastname: checkIs.lastname,
+    },
+  };
 };

@@ -6,7 +6,7 @@ import authRoutes from './routes/user.routes';
 const app = express();
 
 app.use(cors({
-    origin: ['*'],
+    origin: ['http://localhost:3000'],
     methods: ['POST', 'GET'],
     credentials: true
 }));
