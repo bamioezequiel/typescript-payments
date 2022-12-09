@@ -5,10 +5,10 @@
   "type": "module",
   "main": "index.ts",
   "scripts": {
-    "build": "tsc -p .",
+    "tsc": "tsc",
+    "build": "tsc && node ./dist/index.js",
     "dev": "nodemon index.ts",
-    "start": "node ./dist/index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./dist/index.js"
   },
   "keywords": [],
   "author": "",
@@ -25,8 +25,7 @@
     "mercadopago": "^1.5.14",
     "mongoose": "^6.7.5",
     "nodemailer": "^6.8.0",
-    "stripe": "^11.2.0",
-    "typescript": "^4.9.3"
+    "stripe": "^11.2.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
@@ -37,6 +36,7 @@
     "@types/mongoose": "^5.11.97",
     "@types/morgan": "^1.9.3",
     "morgan": "^1.10.0",
-    "nodemon": "^2.0.20"
+    "nodemon": "^2.0.20",
+    "typescript": "^4.9.3"
   }
 }
