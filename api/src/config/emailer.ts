@@ -2,11 +2,11 @@ import nodemailer from "nodemailer";
 
 const createTrans = () => {
   const transport = nodemailer.createTransport({
-    host: "smtp.mailtrap.io",
+    host: "gmail",
     port: 2525,
     auth: {
-      user: "3ed050cff83cbc",
-      pass: "eeb750987ba081",
+      user: "ezetestpf@gmail.com",
+      pass: "test123456789",
     },
   });
   return transport;

@@ -5,15 +5,17 @@ import Login from "./pages/Login/Login";
 import axios from "axios";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home/Home";
-import { useEffect } from "react";
+import Stripe from "./pages/Home/Stripe";
 
-axios.defaults.baseURL = "http://localhost:3001";
+/* axios.defaults.baseURL = "http://localhost:3001"; */
+axios.defaults.baseURL = "https://typescript-payments.onrender.com";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/stripe" element={<Stripe />} />
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />

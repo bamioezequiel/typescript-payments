@@ -4,21 +4,26 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "nodemon index.ts",
+    "start": "node index.ts",
+    "dev": "nodemon index.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@types/mercadopago": "^1.5.8",
     "@types/nodemailer": "^6.4.6",
+    "@types/stripe": "^8.0.417",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "jsonwebtoken": "^8.5.1",
+    "mercadopago": "^1.5.14",
     "mongoose": "^6.7.5",
-    "nodemailer": "^6.8.0"
+    "nodemailer": "^6.8.0",
+    "stripe": "^11.2.0"
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.2",
