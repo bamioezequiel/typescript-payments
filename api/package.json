@@ -2,11 +2,9 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "type": "module",
   "main": "index.ts",
   "scripts": {
-    "dev": "nodemon index.ts",
-    "start": "tsc && node dist/index.js"
+    "start": "nodemon index.ts"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +13,7 @@
     "@types/mercadopago": "^1.5.8",
     "@types/nodemailer": "^6.4.6",
     "@types/stripe": "^8.0.417",
+    "axios": "^1.2.1",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",

@@ -11,6 +11,10 @@
   font-weight: bold;
 }
 
+.coins-input {
+  margin-bottom: 10px;
+}
+
 .coins-container {
   display: flex;
   flex-direction: column;
