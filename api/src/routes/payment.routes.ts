@@ -8,7 +8,7 @@ const router = Router();
 router.post("/mp", checkoutMercadoPago);
 router.post("/mp/notification", async (req: Request, res: Response) => {
   try {
-    res.json("ok");
+    res.status(200).send("ok");
 
     const { id } = req.body.data;
     const infoPayment: any = await axios.get(
@@ -18,14 +18,9 @@ router.post("/mp/notification", async (req: Request, res: Response) => {
           Authorization: `Bearer ${process.env.ACCESS_TOKEN_MP}`,
         },
       }
-    );
-    if (
-      infoPayment.data.status === "approved" ||
-      infoPayment.data.status === "cancel"
-    ) {
+      );
       console.log(infoPayment);
-    }
-    //compare id_mp with preference_id
+   
     res.json("ok");
   } catch (error) {
     console.log(error);
