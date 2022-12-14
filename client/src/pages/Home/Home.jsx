@@ -18,7 +18,7 @@ export default function Home() {
     console.log(coins)
     if (coins > 0) {
       console.log(coins)
-      const res = await axios.post("http://localhost:3001/payment/mp", {
+      const res = await axios.post("/payment/mp", {
         quantity: coins,
         unit_price: 2,
         user_id: 1
