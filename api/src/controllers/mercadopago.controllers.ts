@@ -8,7 +8,7 @@ export const checkoutMercadoPago = async (req: Request, res: Response) => {
     const payment = await createPayment(Number(quantity), Number(unit_price));
 
     const order = await OrderModel.create({
-      orderId: payment.id,
+      orderId: payment.collector_id,
       userId: user_id,
       amount: quantity,
       priceTotal: unit_price * quantity
