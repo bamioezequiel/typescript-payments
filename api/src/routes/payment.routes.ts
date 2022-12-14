@@ -9,7 +9,7 @@ router.post("/mp", checkoutMercadoPago);
 router.post("/mp/notification", async (req: Request, res: Response) => {
   try {
     res.status(200).send("ok");
-
+/* 
     const { id } = req.body.data;
     const infoPayment: any = await axios.get(
       `https://api.mercadopago.com/v1/payments/${id}`,
@@ -21,7 +21,7 @@ router.post("/mp/notification", async (req: Request, res: Response) => {
       );
       console.log(infoPayment);
    
-    res.json("ok");
+    res.json("ok"); */
   } catch (error) {
     console.log(error);
   }
