@@ -15,7 +15,7 @@ export const createPayment = async (quantity: number, unitPrice: number, email: 
         unit_price: unitPrice,
       },
     ],
-    payer: { email },
+    payer: { userId: email },
     back_urls: {
       failure: `${URL_BACK}/failure`,
       pending: `${URL_BACK}/pending`,
