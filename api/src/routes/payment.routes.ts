@@ -7,6 +7,8 @@ const router = Router();
 
 router.post("/mp", checkoutMercadoPago);
 router.post("/mp/notification", async (req: Request, res: Response) => {
+  res.json("ok");
+
   const { id } = req.body.data;
   const infoPayment: any = await axios.get(
     `https://api.mercadopago.com/v1/payments/${id}`,
