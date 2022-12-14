@@ -3,10 +3,6 @@ import { Order } from "../interfaces/order.interface";
 
 const OrderSchema = new Schema<Order>(
   {
-    orderId: {
-      type: String,
-      required: true,
-    },
     status: {
       type: String,
       required: true,

@@ -19,17 +19,7 @@ router.post("/mp/notification", async (req: Request, res: Response) => {
   if (
     infoPayment.data.status === "approved" ||
     infoPayment.data.status === "cancel"
-  ) {
-    const order = await OrderModel.findOne({ id: infoPayment.collector_id });
-    console.log('before ', order)
-    
-    if (order) {
-      await OrderModel.findOneAndUpdate(
-        { orderId: order.orderId },
-        { status: infoPayment.data.status }
-      );
-    }
-    console.log('after', order)
+  ) {    
     console.log(infoPayment);
   }
   //compare id_mp with preference_id
