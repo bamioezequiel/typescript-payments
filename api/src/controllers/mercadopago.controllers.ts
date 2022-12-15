@@ -8,15 +8,7 @@ export const checkoutMercadoPago = async (req: Request, res: Response) => {
   try {
     const { quantity, unit_price, token } = req.body;
     const tokenData: any = verifyToken(`${token}`);
-    const payment = await createPayment(Number(quantity), Number(unit_price), tokenData.id);
-
-    const order = await OrderModel.create({
-      userId: tokenData.id,
-      amount: quantity,
-      priceTotal: unit_price * quantity
-    });
-
-    console.log(order);
+    const payment = await createPayment(Number(quantity), Number(unit_price), tokenData.id);    
 
     res.json(payment);
   } catch (error) {

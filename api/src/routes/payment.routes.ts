@@ -20,18 +20,16 @@ router.post("/mp/notification", async (req: Request, res: Response) => {
             },
           }
         );
-        let estado = "";
-        if (infoPago.data.status === "approved") {
-          estado = "paid";
-        } else if (infoPago.data.status === "pending") {
-          estado = "pendiente";
-        } else {
-          estado = "cancel";
-        }
-        console.log("estado", estado);
-        if (estado === "paid" || estado === "cancel") {
-          console.log('1, ',infoPago.data)
-          if (estado === "paid") {
+        let status = infoPago.data.status;
+       
+        if (status === "approved" || status === "cancel") {
+          const orderId = infoPago.data.additional_info.items[0].description;
+          const order = await OrderModel.findOneAndUpdate({status}, {
+            _id: orderId
+          });
+          console.log(order);
+
+          if (status === "approved") {
             console.log('Email1 ', infoPago.data.additional_info.items[0].description,
             "paid")
           } else {
