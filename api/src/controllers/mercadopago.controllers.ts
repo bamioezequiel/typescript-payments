@@ -20,6 +20,7 @@ export const checkoutMercadoPago = async (req: Request, res: Response) => {
 export const notificationMercadoPago = async (req: Request, res: Response) => {
   try {
     res.status(200).send("ok");
+    console.log(req.body.action);
     if (req.body.action === "payment.created") {
       await notificationPayment(req.body);
     }
