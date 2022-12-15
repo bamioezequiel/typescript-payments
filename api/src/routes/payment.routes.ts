@@ -2,6 +2,8 @@ import axios from "axios";
 import { Request, Response, Router } from "express";
 import { checkoutMercadoPago } from "../controllers/mercadopago.controllers";
 import OrderModel from "../models/order.models";
+import CoinModel from "../models/coin.models";
+import UserModel from "../models/user.models";
 
 const router = Router();
 
@@ -30,22 +32,13 @@ router.post("/mp/notification", async (req: Request, res: Response) => {
             },
             { status }
           );
-          const order = await OrderModel.findOne({_id: orderId});
-          console.log(order);
-
-          if (status === "approved") {
-            console.log(
-              "Email1 ",
-              infoPago.data.additional_info.items[0].description,
-              "paid"
-            );
-          } else {
-            console.log(
-              "Email2 ",
-              infoPago.data.additional_info.items[0].description,
-              "cancel"
-            );
-          }
+          const order: any = await OrderModel.findOne({ _id: orderId });
+          const user: any = await UserModel.findOne({email: order.userId});
+          const userCoins: any = await CoinModel.findOne({userId: user._id});
+          console.log(userCoins);
+          await CoinModel.findOneAndUpdate({userId: user._id}, {amount: (userCoins.amount + order.amount)});
+          
+          console.log(await CoinModel.findOne({userId: user._id}))
         }
       } catch (error) {
         res.status(400).send("algo fallo");
