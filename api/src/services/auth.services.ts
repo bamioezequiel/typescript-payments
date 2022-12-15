@@ -36,7 +36,7 @@ export const loginUser = async ({ email, password }: Auth) => {
   if (!isCorrect) throw "PASSWORD_INCORRECT";
 
   const token = generateToken(`${checkIs._id}`);
-  const userCoin = await CoinModel.findOne({userId: checkIs._id});
+  const userCoin: any = await CoinModel.findOne({userId: checkIs._id});
   return {
     token,
     user: {
