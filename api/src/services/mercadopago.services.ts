@@ -51,7 +51,8 @@ export const notificationPayment = async (body: any) => {
     }
   );
   let status = infoPago.data.status;
-    console.log(infoPago.data)
+  if(status === 'rejected' || status === 'cancelled') status = 'cancel';  
+  console.log(infoPago.data)
   if (status === "approved" || status === "cancel") {
     const orderId = infoPago.data.additional_info.items[0].description;
     await OrderModel.findOneAndUpdate(
