@@ -1,5 +1,6 @@
 import { Auth } from "../interfaces/auth.interface";
 import { User } from "../interfaces/user.interface";
+import CoinModel from "../models/coin.models";
 import UserModel from "../models/user.models";
 import { encrypt, verifyPassword } from "../utils/bcrypt.handle";
 import { generateToken } from "../utils/jwt.handle";
@@ -35,7 +36,7 @@ export const loginUser = async ({ email, password }: Auth) => {
   if (!isCorrect) throw "PASSWORD_INCORRECT";
 
   const token = generateToken(`${checkIs._id}`);
-
+  const userCoin = await CoinModel.findOne({userId: checkIs._id});
   return {
     token,
     user: {
@@ -43,6 +44,7 @@ export const loginUser = async ({ email, password }: Auth) => {
       email: checkIs.email,
       name: checkIs.name,
       lastname: checkIs.lastname,
+      coins: userCoin
     },
   };
 };
