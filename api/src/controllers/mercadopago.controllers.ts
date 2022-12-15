@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
 import OrderModel from "../models/order.models";
 import UserModel from "../models/user.models";
-import { createPayment } from "../services/mercadopago.services";
+import { createPayment, notificationPayment } from "../services/mercadopago.services";
 import { verifyToken } from "../utils/jwt.handle";
 
 export const checkoutMercadoPago = async (req: Request, res: Response) => {
@@ -16,3 +16,14 @@ export const checkoutMercadoPago = async (req: Request, res: Response) => {
     res.send(error)
   }
 };
+
+export const notificationMercadoPago = async (req: Request, res: Response) => {
+  try {
+    res.status(200).send("ok");
+    if (req.body.action === "payment.created") {
+      await notificationPayment(req.body);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
