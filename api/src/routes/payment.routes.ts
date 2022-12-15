@@ -21,20 +21,30 @@ router.post("/mp/notification", async (req: Request, res: Response) => {
           }
         );
         let status = infoPago.data.status;
-       
+
         if (status === "approved" || status === "cancel") {
           const orderId = infoPago.data.additional_info.items[0].description;
-          const order = await OrderModel.findOneAndUpdate({status}, {
-            _id: orderId
-          });
+          await OrderModel.findOneAndUpdate(
+            {
+              _id: orderId,
+            },
+            { status }
+          );
+          const order = await OrderModel.findOne({_id: orderId});
           console.log(order);
 
           if (status === "approved") {
-            console.log('Email1 ', infoPago.data.additional_info.items[0].description,
-            "paid")
+            console.log(
+              "Email1 ",
+              infoPago.data.additional_info.items[0].description,
+              "paid"
+            );
           } else {
-            console.log('Email2 ', infoPago.data.additional_info.items[0].description,
-            "cancel")
+            console.log(
+              "Email2 ",
+              infoPago.data.additional_info.items[0].description,
+              "cancel"
+            );
           }
         }
       } catch (error) {
@@ -45,7 +55,6 @@ router.post("/mp/notification", async (req: Request, res: Response) => {
       console.log(e);
     });
   } else {
-    
   }
 });
 
