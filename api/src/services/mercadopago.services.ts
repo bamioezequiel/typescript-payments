@@ -2,15 +2,19 @@ import axios from "axios";
 import CoinModel from "../models/coin.models";
 import OrderModel from "../models/order.models";
 import UserModel from "../models/user.models";
-const URL_BACK = process.env.URL_BACK;
+const URL_FRONT = process.env.URL_FRONT;
 
-export const createPayment = async (quantity: number, unitPrice: number, email: string) => {
+export const createPayment = async (
+  quantity: number,
+  unitPrice: number,
+  email: string
+) => {
   const url = "https://api.mercadopago.com/checkout/preferences";
-  
+
   const order = await OrderModel.create({
     userId: email,
     amount: quantity,
-    priceTotal: unitPrice * quantity
+    priceTotal: unitPrice * quantity,
   });
 
   const body = {
@@ -25,9 +29,9 @@ export const createPayment = async (quantity: number, unitPrice: number, email: 
       },
     ],
     back_urls: {
-      failure: `${URL_BACK}/failure`,
-      pending: `${URL_BACK}/pending`,
-      success: `${URL_BACK}/success`,
+      /*       failure: `${URL_BACK}/failure`,
+      pending: `${URL_BACK}/pending`, */
+      success: `${URL_FRONT}/success`,
     },
   };
   const payment = await axios.post(url, body, {
@@ -51,8 +55,8 @@ export const notificationPayment = async (body: any) => {
     }
   );
   let status = infoPago.data.status;
-  if(status === 'rejected' || status === 'cancelled') status = 'cancel';  
-  console.log(infoPago.data)
+  if (status === "rejected" || status === "cancelled") status = "cancel";
+  /*   console.log(infoPago.data) */
   if (status === "approved" || status === "cancel") {
     const orderId = infoPago.data.additional_info.items[0].description;
     await OrderModel.findOneAndUpdate(
@@ -71,4 +75,4 @@ export const notificationPayment = async (body: any) => {
 
     /* console.log(await CoinModel.findOne({userId: user._id})) */
   }
-}
+};
