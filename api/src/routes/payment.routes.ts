@@ -30,9 +30,7 @@ router.post("/mp/notification", async (req: Request, res: Response) => {
         }
         console.log("estado", estado);
         if (estado === "paid" || estado === "cancel") {
-          console.log('1, ',infoPago.data.additional_info.items[0].description,
-          estado)
-          console.log("status", status);
+          console.log('1, ',infoPago.data)
           if (estado === "paid") {
             console.log('Email1 ', infoPago.data.additional_info.items[0].description,
             "paid")
