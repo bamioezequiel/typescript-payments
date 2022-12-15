@@ -44,7 +44,7 @@ export const loginUser = async ({ email, password }: Auth) => {
       email: checkIs.email,
       name: checkIs.name,
       lastname: checkIs.lastname,
-      coins: userCoin
+      coins: userCoin.amount
     },
   };
 };
