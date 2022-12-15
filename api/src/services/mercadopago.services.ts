@@ -1,18 +1,18 @@
 import axios from "axios";
-import CoinModel from "../models/coin.models";
 import OrderModel from "../models/order.models";
 import UserModel from "../models/user.models";
+import { addCoinsUser } from "./coin.services";
 const URL_FRONT = process.env.URL_FRONT;
 
 export const createPayment = async (
   quantity: number,
   unitPrice: number,
-  email: string
+  userId: string
 ) => {
   const url = "https://api.mercadopago.com/checkout/preferences";
 
   const order = await OrderModel.create({
-    userId: email,
+    userId,
     amount: quantity,
     priceTotal: unitPrice * quantity,
   });
@@ -65,13 +65,10 @@ export const notificationPayment = async (body: any) => {
       },
       { status }
     );
-    const order: any = await OrderModel.findOne({ _id: orderId });
-    const user: any = await UserModel.findOne({ email: order.userId });
-    const userCoins: any = await CoinModel.findOne({ userId: user._id });
-    await CoinModel.findOneAndUpdate(
-      { userId: user._id },
-      { amount: userCoins.amount + order.amount }
-    );
+    if (status === "approved") {
+      const order: any = await OrderModel.findOne({ _id: orderId });
+      await addCoinsUser(order.userId, order.amount);
+    }
 
     /* console.log(await CoinModel.findOne({userId: user._id})) */
   }

@@ -34,7 +34,7 @@ export const loginUser = async ({ email, password }: Auth) => {
   const isCorrect = await verifyPassword(password, passHash);
   if (!isCorrect) throw "PASSWORD_INCORRECT";
 
-  const token = generateToken(checkIs.email);
+  const token = generateToken(`${checkIs._id}`);
 
   return {
     token,
