@@ -11,10 +11,7 @@ export const getCoinsUser = async (id: string) => {
 };
 
 export const addCoinsUser = async (id: string, amount: number) => {
-  let coinUser = await CoinModel.findOne({ userId: id });
-  if (!coinUser) {
-    coinUser = await CoinModel.create({ amount: 0, userId: id });
-  }
+  let coinUser = await getCoinsUser(id);
 
   console.log(amount);
   return await CoinModel.findOneAndUpdate(

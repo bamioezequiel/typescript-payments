@@ -4,6 +4,7 @@ import CoinModel from "../models/coin.models";
 import UserModel from "../models/user.models";
 import { encrypt, verifyPassword } from "../utils/bcrypt.handle";
 import { generateToken } from "../utils/jwt.handle";
+import { getCoinsUser } from "./coin.services";
 
 export const registerNewUser = async ({
   name,
@@ -36,7 +37,7 @@ export const loginUser = async ({ email, password }: Auth) => {
   if (!isCorrect) throw "PASSWORD_INCORRECT";
 
   const token = generateToken(`${checkIs._id}`);
-  const userCoin: any = await CoinModel.findOne({userId: checkIs._id});
+  const userCoin: any = await getCoinsUser(`${checkIs._id}`);
   return {
     token,
     user: {
@@ -44,7 +45,7 @@ export const loginUser = async ({ email, password }: Auth) => {
       email: checkIs.email,
       name: checkIs.name,
       lastname: checkIs.lastname,
-      coins: userCoin.amount || 0
+      coins: userCoin.amount
     },
   };
 };
