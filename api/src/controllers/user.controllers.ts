@@ -2,8 +2,19 @@ import { Request, Response } from "express";
 import UserModel from "../models/user.models";
 import { getCoinsUser } from "../services/coin.services";
 import { changeRoleUser } from "../services/user.services";
+import { checkUser } from "./auth.controllers";
 
-export const getUser = async (req: Request, res: Response) => {
+export const getUserByToken = (req: Request, res: Response) => {
+try {
+  const resUser: any = checkUser(req, res);
+  
+  res.send(resUser.user);
+} catch (error) {
+    console.log(error);
+}
+}
+
+export const getUserById = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
     const user: any = await UserModel.findById(id);

@@ -1,13 +1,13 @@
 import React from "react";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { AiFillWechat } from "react-icons/ai";
 import { toast, ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { handleValidationLogin, toastOptions } from "../../utils";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import "./Login.css";
-import { fetchGetUser } from "../../redux/users";
+import { fetchGetUserById } from "../../redux/users";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -42,7 +42,7 @@ export default function Login() {
         else if (password) toast.error(password, toastOptions);
       } else {
         localStorage.setItem("token", data.token);
-        dispatch(fetchGetUser(data.user._id));
+        dispatch(fetchGetUserById(data.user._id));
         navigate("/home");
       }
     }

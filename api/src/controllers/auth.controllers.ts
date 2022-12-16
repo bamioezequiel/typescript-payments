@@ -14,7 +14,7 @@ export const checkUser = (req: Request, res: Response) => {
         res.send({ status: false });
       } else {
         const user = await UserModel.findById(decodedToken.id);
-        if (user) res.send({ status: true });
+        if (user) res.send({ status: true, user });
         else res.send({ status: false });
       }
     });

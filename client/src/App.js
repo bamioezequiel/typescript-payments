@@ -13,20 +13,19 @@ axios.defaults.baseURL = "https://typescript-payments-eb.onrender.com";
 
 function App() {
   const dispatch = useDispatch();
-  let isVerify = false;
+  const token = localStorage.getItem('token');
   useEffect(() => {
     const verifyUser = async () => {
-      const token = localStorage.getItem('token');
+      console.log('a');
       const res = await axios.post("/auth/verifyUser", {}, {
         headers: {
           authorization: `Bearer ${token}`,
         } 
       });
-      console.log(res)
-      isVerify = res.data.status;
+      if(!res) localStorage.removeItem('token');
     };
     verifyUser();
-  }, []);
+  }, [token]);
 
   return (
     <>
@@ -34,16 +33,16 @@ function App() {
         <Routes>
           <Route
             path="/"
-            element={!isVerify ? <Login /> : <Navigate to="/home" />}
+            element={!token ? <Login /> : <Navigate to="/home" />}
           />
           <Route
             path="/login"
-            element={!isVerify ? <Login /> : <Navigate to="/home" />}
+            element={!token ? <Login /> : <Navigate to="/home" />}
           />
           <Route path="/signup" element={<Signup />} />
           <Route
             path="/home"
-            element={isVerify ? <Home /> : <Navigate to="/login" />}
+            element={token ? <Home /> : <Navigate to="/login" />}
           />
           <Route path="/success" element={<Success />} />
         </Routes>

@@ -8,22 +8,39 @@ export const userSlice = createSlice({
     user: {},
   },
   reducers: {
-    getUser: (state, action) => {
+    getUserById: (state, action) => {
+      state.user = action.payload;
+    },
+    getUserByToken: (state, action) => {
       state.user = action.payload;
     }
   },
 });
 
-export const { getUser } = userSlice.actions;
+export const { getUserById,getUserByToken } = userSlice.actions;
 
 export default userSlice.reducer;
 
-export const fetchGetUser = (id) => (dispatch) => {
+export const fetchGetUserById = (id) => (dispatch) => {
   axios
     .get(`https://typescript-payments-eb.onrender.com/user/${id}`)
     .then((res) => {
       console.log(res)
-      dispatch(getUser(res.data));
+      dispatch(getUserById(res.data));
+    })
+    .catch((error) => console.log(error));
+};
+
+export const fetchGetUserByToken = (token) => (dispatch) => {
+  axios
+    .get(`https://typescript-payments-eb.onrender.com/user`, {
+      headers: {
+        authorization: `Bearer ${token}`,
+      } 
+    })
+    .then((res) => {
+      console.log(res)
+      dispatch(getUserByToken(res.data));
     })
     .catch((error) => console.log(error));
 };
