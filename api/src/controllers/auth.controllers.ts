@@ -1,7 +1,27 @@
+import jwt from 'jsonwebtoken';
 import { Request, Response } from "express";
 import { sendMail } from "../config/emailer";
 import { loginUser, registerNewUser } from "../services/auth.services";
 import { handleErrors } from "./../utils/error.handle";
+import UserModel from '../models/user.models';
+const JWT_SECRET = process.env.JWT_SECRET || '';
+
+export const checkUser = (req: Request, res: Response) => {
+  const token = req.headers.authorization?.split(" ").pop();
+  if (token) {
+    jwt.verify(token, JWT_SECRET, async (error: any, decodedToken: any) => {
+      if (error) {
+        res.send({ status: false });
+      } else {
+        const user = await UserModel.findById(decodedToken.id);
+        if (user) res.send({ status: true });
+        else res.send({ status: false });
+      }
+    });
+  } else {
+    res.send({ status: false });
+  }
+};
 
 export const register = async (req: Request, res: Response) => {
   try {

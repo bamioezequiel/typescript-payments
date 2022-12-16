@@ -43,7 +43,7 @@ export default function Login() {
       } else {
         localStorage.setItem("token", data.token);
         dispatch(fetchGetUser(data.user._id));
-        navigate("/");
+        navigate("/home");
       }
     }
   };
