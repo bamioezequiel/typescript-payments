@@ -1,13 +1,16 @@
 import React from "react";
-import "./Login.css";
+import axios from "axios";
 import { useState, useEffect } from "react";
 import { AiFillWechat } from "react-icons/ai";
 import { toast, ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import { handleValidationLogin, toastOptions } from "../../utils";
+import { useDispatch, useSelector } from 'react-redux';
+import "./Login.css";
+import { fetchGetUser } from "../../redux/slices/userSlice";
 
 export default function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [input, setInput] = useState({
     email: "",
@@ -39,7 +42,7 @@ export default function Login() {
         else if (password) toast.error(password, toastOptions);
       } else {
         localStorage.setItem("token", data.token);
-        localStorage.setItem("data-user", JSON.stringify(data.user));
+        dispatch(fetchGetUser(data.user._id));
         navigate("/");
       }
     }

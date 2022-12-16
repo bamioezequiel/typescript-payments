@@ -5,6 +5,7 @@ import authRoutes from './routes/auth.routes';
 import userRoutes from './routes/user.routes';
 import coinRoutes from './routes/coin.routes';
 import paymentRoutes from './routes/payment.routes';
+import storeRoutes from './routes/store.routes';
 
 const app = express();
 
@@ -20,5 +21,6 @@ app.use('/auth', authRoutes);
 app.use('/user', userRoutes);
 app.use('/coin', coinRoutes);
 app.use('/payment', paymentRoutes);
+app.use('/store', storeRoutes);
 
 export default app;

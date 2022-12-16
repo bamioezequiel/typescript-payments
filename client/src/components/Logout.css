@@ -1,0 +1,16 @@
+.logout-container button {
+  background-color: transparent;
+  border: thin solid #f19a3e;
+  margin: 0 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.logout-container button:hover {
+  background-color: #f19a3e;
+  color: #fff;
+}
+
+.logout {
+  margin: 20px 0;
+}

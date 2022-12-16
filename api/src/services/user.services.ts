@@ -10,3 +10,9 @@ export const changeRoleUser = async (id: string, role: string) => {
   );
   return user;
 };
+
+export const getUserById = async (id: string) => {
+  const user =  await UserModel.findById(id);
+
+  return user;
+}

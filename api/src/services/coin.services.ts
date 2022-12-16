@@ -1,5 +1,4 @@
 import CoinModel from "../models/coin.models";
-import UserModel from "../models/user.models";
 
 export const getCoinsUser = async (id: string) => {
   let coinUser = await CoinModel.findOne({ userId: id });

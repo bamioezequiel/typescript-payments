@@ -38,6 +38,7 @@ export const loginUser = async ({ email, password }: Auth) => {
 
   const token = generateToken(`${checkIs._id}`);
   const userCoin: any = await getCoinsUser(`${checkIs._id}`);
+  
   return {
     token,
     user: {
@@ -45,6 +46,7 @@ export const loginUser = async ({ email, password }: Auth) => {
       email: checkIs.email,
       name: checkIs.name,
       lastname: checkIs.lastname,
+      role: checkIs.role,
       coins: userCoin.amount
     },
   };
