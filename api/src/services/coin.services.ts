@@ -2,7 +2,10 @@ import CoinModel from "../models/coin.models";
 import UserModel from "../models/user.models";
 
 export const getCoinsUser = async (id: string) => {
-  const coinUser = await CoinModel.findOne({ userId: id });
+  let coinUser = await CoinModel.findOne({ userId: id });
+  if (!coinUser) {
+    coinUser = await CoinModel.create({ amount: 0, userId: id });
+  }
 
   return coinUser;
 };
