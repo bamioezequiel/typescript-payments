@@ -22,6 +22,7 @@ export const fetchGetUser = (id) => (dispatch) => {
   axios
     .get(`https://typescript-payments-eb.onrender.com/user/${id}`)
     .then((res) => {
+      console.log(res)
       dispatch(getUser(res.data));
     })
     .catch((error) => console.log(error));

@@ -8,7 +8,7 @@ import Home from "./pages/Home/Home";
 import Failure from "./components/Failure";
 import Success from "./components/Success";
 import { Provider } from 'react-redux';
-import store from './redux/store.js';
+import store from './redux';
 /* axios.defaults.baseURL = "http://localhost:3001"; */
 axios.defaults.baseURL = "https://typescript-payments-eb.onrender.com";
 

@@ -7,7 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { handleValidationLogin, toastOptions } from "../../utils";
 import { useDispatch, useSelector } from 'react-redux';
 import "./Login.css";
-import { fetchGetUser } from "../../redux/slices/userSlice";
+import { fetchGetUser } from "../../redux/users";
 
 export default function Login() {
   const dispatch = useDispatch();

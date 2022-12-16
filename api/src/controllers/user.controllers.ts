@@ -8,8 +8,15 @@ export const getUser = async (req: Request, res: Response) => {
     const { id } = req.params;
     const user: any = await UserModel.findById(id);
     const userCoin: any = await getCoinsUser(`${user._id}`);
-
-    res.send({ ...user, coins: userCoin.amount });
+    
+    res.send({
+      _id: user.id,
+      name: user.name,
+      lastname: user.lastname,
+      email: user.email,
+      role: user.role,
+      coins: userCoin.amount
+    });
   } catch (error) {
     console.log(error);
     res.status(400).send(error);
