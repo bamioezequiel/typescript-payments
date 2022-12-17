@@ -10,11 +10,10 @@ import "./Nav.css";
 
 export default function Nav({user}) {
  
-
   return (
     <nav className="nav-container">
       <div className="nav-coins">
-        <BsCashCoin /> Coins: <b>{user.name}</b>
+        <BsCashCoin /> Coins: <b>{user.coins}</b>
       </div>
       <div className="nav-links">
         <NavLink to="/">Home</NavLink>

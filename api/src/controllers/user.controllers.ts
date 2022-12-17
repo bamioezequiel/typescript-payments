@@ -7,7 +7,7 @@ import { checkUser } from "./auth.controllers";
 export const getUserByToken = async (req: Request, res: Response) => {
 try {
   const resUser: any = checkUser(req, res);
-  const userCoin: any = await getCoinsUser(`${resUser._id}`);
+  const userCoin: any = await getCoinsUser(`${resUser.user._id}`);
 
   res.send({
     _id: resUser.user.id,
