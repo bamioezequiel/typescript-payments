@@ -8,6 +8,7 @@ import Home from "./pages/Home/Home";
 import Success from "./components/Success";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
+import { fetchGetUserByToken } from "./redux/users";
 /* axios.defaults.baseURL = "http://localhost:3001"; */
 axios.defaults.baseURL = "https://typescript-payments-eb.onrender.com";
 
@@ -22,7 +23,8 @@ function App() {
           authorization: `Bearer ${token}`,
         } 
       });
-      if(!res) localStorage.removeItem('token');
+      if(!res) return localStorage.removeItem('token');
+      dispatch(fetchGetUserByToken(token));
     };
     verifyUser();
   }, [token]);

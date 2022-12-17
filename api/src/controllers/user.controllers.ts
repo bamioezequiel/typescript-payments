@@ -4,11 +4,19 @@ import { getCoinsUser } from "../services/coin.services";
 import { changeRoleUser } from "../services/user.services";
 import { checkUser } from "./auth.controllers";
 
-export const getUserByToken = (req: Request, res: Response) => {
+export const getUserByToken = async (req: Request, res: Response) => {
 try {
   const resUser: any = checkUser(req, res);
-  
-  res.send(resUser.user);
+  const userCoin: any = await getCoinsUser(`${resUser._id}`);
+
+  res.send({
+    _id: resUser.user.id,
+    name: resUser.user.name,
+    lastname: resUser.user.lastname,
+    email: resUser.user.email,
+    role: resUser.user.role,
+    coins: userCoin.amount
+  });
 } catch (error) {
     console.log(error);
 }
