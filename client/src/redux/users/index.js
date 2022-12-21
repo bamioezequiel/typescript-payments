@@ -6,6 +6,7 @@ export const userSlice = createSlice({
   name: "users",
   initialState: {
     user: {},
+    orders: []
   },
   reducers: {
     getUserById: (state, action) => {
@@ -13,17 +14,30 @@ export const userSlice = createSlice({
     },
     getUserByToken: (state, action) => {
       state.user = action.payload;
+    },
+    getUserOrders: (state, action) => {
+      state.orders = action.payload;
     }
   },
 });
 
-export const { getUserById,getUserByToken } = userSlice.actions;
+export const { getUserById,getUserByToken,getUserOrders } = userSlice.actions;
 
 export default userSlice.reducer;
 
+export const fetchGetUserOrders = (id) => (dispatch) => {
+  axios
+    .get(`/user/orders/${id}`)
+    .then((res) => {
+      console.log(res)
+      dispatch(getUserOrders(res.data));
+    })
+    .catch((error) => console.log(error));
+};
+
 export const fetchGetUserById = (id) => (dispatch) => {
   axios
-    .get(`https://typescript-payments-eb.onrender.com/user/${id}`)
+    .get(`/user/${id}`)
     .then((res) => {
       console.log(res)
       dispatch(getUserById(res.data));
@@ -33,7 +47,7 @@ export const fetchGetUserById = (id) => (dispatch) => {
 
 export const fetchGetUserByToken = (token) => (dispatch) => {
   axios
-    .get(`https://typescript-payments-eb.onrender.com/user`, {
+    .get(`/user`, {
       headers: {
         authorization: `Bearer ${token}`,
       } 

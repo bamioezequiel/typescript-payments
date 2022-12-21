@@ -3,7 +3,7 @@ import { buyRoles } from '../controllers/store.controllers';
 
 const router = Router();
 
-router.post('/buyRole', buyRoles);
+router.post('/buyRoles', buyRoles);
 
 
 export default router;

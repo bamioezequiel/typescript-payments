@@ -1,7 +1,7 @@
 import React from "react";
 import { BsCashCoin } from "react-icons/bs";
 import { NavLink } from "react-router-dom";
-import Logout from "./Logout";
+import Logout from "./../Logout/Logout";
 import "./Nav.css";
 
 export default function Nav({user}) {
@@ -13,7 +13,7 @@ export default function Nav({user}) {
       </div>
       <div className="nav-links">
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/dashboard">Dashboard</NavLink>
+        {user.role === 'Admin' ? <NavLink to="/dashboard">Dashboard</NavLink> : null}
       </div>
       <Logout></Logout>
     </nav>

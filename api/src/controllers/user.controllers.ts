@@ -1,10 +1,21 @@
 import { Request, Response } from "express";
 import UserModel from "../models/user.models";
 import { getCoinsUser } from "../services/coin.services";
-import { changeRoleUser, getUser } from "../services/user.services";
+import { changeRoleUser, getOrders, getUser } from "../services/user.services";
 import { checkUser } from "./auth.controllers";
 import jwt from "jsonwebtoken";
 const JWT_SECRET = process.env.JWT_SECRET || "";
+
+export const getUserOrders = async (req: Request, res: Response) => {
+  try {
+    const {id} = req.params;
+    const orders = await getOrders(id);
+    res.send(orders);
+  } catch (error) {
+    console.log(error);
+  }
+
+ }
 
 export const getUserByToken = async (req: Request, res: Response) => {
   try {

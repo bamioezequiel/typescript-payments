@@ -5,17 +5,26 @@ import { AiFillWechat } from "react-icons/ai";
 import { toast, ToastContainer } from "react-toastify";
 import { Link, useNavigate } from "react-router-dom";
 import { handleValidationLogin, toastOptions } from "../../utils";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import "./Login.css";
 import { fetchGetUserById } from "../../redux/users";
 
 export default function Login() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const user = useSelector((state) => state.users.user);
+ 
   const [input, setInput] = useState({
     email: "",
     password: "",
   });
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate("/home");
+    }
+  }, []);
 
   const handleChange = (e) => {
     e.preventDefault();

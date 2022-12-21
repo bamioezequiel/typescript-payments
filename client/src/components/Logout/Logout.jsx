@@ -8,7 +8,7 @@ export default function Logout() {
     e.preventDefault();
     localStorage.removeItem('token');
     localStorage.removeItem('data-user');
-    navigate('/login');
+    window.location.reload();
   };
   return (
     <div className="logout-container">

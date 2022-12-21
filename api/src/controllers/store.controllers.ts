@@ -5,7 +5,7 @@ import { changeRoleUser, getUser } from "../services/user.services";
 export const buyRoles = async (req: Request, res: Response) => {
   const roles: any = {
     Admin: 200,
-    Vip: 100,
+    User: 0,
   };
 
   try {
@@ -15,11 +15,11 @@ export const buyRoles = async (req: Request, res: Response) => {
       if (user.role !== role) {
         const userCoins = await getCoinsUser(`${user._id}`);
         const priceRol = roles[role];
-        if (priceRol) {
+        if (priceRol || priceRol === 0) {
           if (userCoins.amount >= priceRol) {
             await changeRoleUser(`${user._id}`, role);
             await removeCoinsUser(`${user._id}`, priceRol);
-            res.send("The purchase was successful");
+            res.send({ status: true, message: "The purchase was successful" });
           } else {
             res.send("Insufficient money");
           }

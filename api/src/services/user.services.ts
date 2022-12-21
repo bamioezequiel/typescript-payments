@@ -1,3 +1,4 @@
+import OrderModel from "../models/order.models";
 import UserModel from "../models/user.models";
 import { getCoinsUser } from "./coin.services";
 
@@ -24,4 +25,9 @@ export const getUser = async (id: string) => {
     role: user.role,
     coins: userCoin.amount,
   };
+}
+
+export const getOrders = async (id: string) => {
+  const orders = await OrderModel.find({userId: id});
+  return orders;
 }

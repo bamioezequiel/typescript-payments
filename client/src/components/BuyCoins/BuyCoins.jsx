@@ -30,18 +30,20 @@ export default function BuyCoins() {
     }
   };
   return (
-    <>
-      <h2>Buy coins</h2>
-      <input
-        type="number"
-        name="coin"
-        className="coins-input"
-        onChange={handleChangeCoin}
-        placeholder="Coins..."
-      />
-      <div>
-        <button onClick={handleClickMP}>Mercado Pago</button>
+    <div className="card">
+      <div className="contentBox">
+        <h3>Buy coins</h3>
+        <input
+          type="number"
+          name="coin"
+          className="coins-input"
+          onChange={handleChangeCoin}
+          placeholder="Coins..."
+        />
+        <button className="buy" onClick={handleClickMP}>
+          Mercado Pago
+        </button>
       </div>
-    </>
+    </div>
   );
 }
