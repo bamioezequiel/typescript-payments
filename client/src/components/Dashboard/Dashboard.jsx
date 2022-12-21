@@ -58,7 +58,7 @@ export default function Dashboard() {
                     {order.status}
                   </div>
                   <div className="col col-4" data-label="Date">
-                    {new Date(order.createdAt).toLocaleDateString()}
+                    {new Date(order.createdAt).toLocaleString()}
                   </div>
                 </li>
               );
