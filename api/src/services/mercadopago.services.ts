@@ -31,8 +31,8 @@ export const createPayment = async (
     back_urls: {
       /*       failure: `${URL_BACK}/failure`,
       pending: `${URL_BACK}/pending`, */
-      success: `${URL_FRONT}/success`,
-    },
+/*       success: `${URL_FRONT}`,
+ */    },
   };
   const payment = await axios.post(url, body, {
     headers: {
