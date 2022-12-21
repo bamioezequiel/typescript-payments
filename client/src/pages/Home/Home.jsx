@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
-import { BsCashCoin } from "react-icons/bs";
-import { toastOptions } from "../../utils";
+import { BiLink } from "react-icons/bi";
 import { ToastContainer } from "react-toastify";
 import Nav from "../../components/Nav/Nav";
 import BuyCoins from "../../components/BuyCoins/BuyCoins";
@@ -17,7 +16,7 @@ export default function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
       navigate("/login");
     }
@@ -46,17 +45,20 @@ export default function Home() {
       <div className="home-container">
         <div>
           <div className="home-info">
-          <span>ID: {user._id}</span>
-          <span>NAME: {user.name}</span>
-          <span>LASTNAME: {user.lastname}</span>
-          <span>ROL: {user.role}</span>
-          <span>EMAIL: {user.email}</span>            
+            <span>ID: {user._id}</span>
+            <span>NAME: {user.name}</span>
+            <span>LASTNAME: {user.lastname}</span>
+            <span>ROL: {user.role}</span>
+            <span>EMAIL: {user.email}</span>
+          <a href="https://github.com/bamioezequiel/typescript-payments/blob/main/README.md" target='_blank'>
+            TEST CARD AND INFO <BiLink />
+          </a>
           </div>
         </div>
         <div className="cards">
-          <BuyCard title='Admin' price='200' btn='Buy Now'></BuyCard>
+          <BuyCard title="Admin" price="200" btn="Buy Now"></BuyCard>
           <BuyCoins></BuyCoins>
-          <BuyCard title='User' price='0' btn='Get Now'></BuyCard>
+          <BuyCard title="User" price="0" btn="Get Now"></BuyCard>
         </div>
         <ToastContainer></ToastContainer>
       </div>
