@@ -1,5 +1,8 @@
 # typescript-payments
 
+Video: https://vimeo.com/783370714/8124a13b50
+
+
 <h3>Tecnologias utilizadas</h3>
 
 <h5>Backend: Typescript, Nodejs, Express, Mongoose</h5>
@@ -16,6 +19,13 @@ Cuenta Admin:
 </pre>
 
 <h2>MERCADO PAGO</h2>
+
+<p>Tarjeta de prueba: </p>
+<img src='https://user-images.githubusercontent.com/48653253/208971375-167af2ec-5d00-4375-8a25-d4052fd44e8a.png'/>
+<p>Numero: 5031 7557 3453 0604</p>	
+<p>Vencimiento: 11/25</p>
+<p>Nombre: APRO</p>
+<p>CVV: 123</p>
 
 <pre>
 Usuario Vendedor:
