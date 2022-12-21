@@ -17,6 +17,13 @@ export default function Singup() {
     confirmPassword: "",
   });
 
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      navigate("/home");
+    }
+  }, []);
+
   const handleChange = (e) => {
     e.preventDefault();
     setInput({ ...input, [e.target.name]: e.target.value });
