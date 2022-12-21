@@ -21,8 +21,8 @@ export const { getUserById,getUserByToken } = userSlice.actions;
 
 export default userSlice.reducer;
 
-export const fetchGetUserById = (id) => async (dispatch) => {
-  await axios
+export const fetchGetUserById = (id) => (dispatch) => {
+  axios
     .get(`https://typescript-payments-eb.onrender.com/user/${id}`)
     .then((res) => {
       console.log(res)
@@ -31,8 +31,8 @@ export const fetchGetUserById = (id) => async (dispatch) => {
     .catch((error) => console.log(error));
 };
 
-export const fetchGetUserByToken = (token) => async (dispatch) => {
-  await axios
+export const fetchGetUserByToken = (token) => (dispatch) => {
+  axios
     .get(`https://typescript-payments-eb.onrender.com/user`, {
       headers: {
         authorization: `Bearer ${token}`,
@@ -40,7 +40,7 @@ export const fetchGetUserByToken = (token) => async (dispatch) => {
     })
     .then((res) => {
       console.log(res)
-      dispatch(getUserByToken(res.data.user));
+      dispatch(getUserByToken(res.data));
     })
     .catch((error) => console.log(error));
 };

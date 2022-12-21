@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import { buyRole } from '../controllers/store.controllers';
+import { buyRoles } from '../controllers/store.controllers';
 
 const router = Router();
 
-router.post('/buyRole', buyRole);
+router.post('/buyRole', buyRoles);
 
 
 export default router;

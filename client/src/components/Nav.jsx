@@ -1,10 +1,6 @@
 import React from "react";
-import { useEffect } from "react";
-import { useState } from "react";
 import { BsCashCoin } from "react-icons/bs";
-import { useDispatch, useSelector } from "react-redux";
 import { NavLink } from "react-router-dom";
-import { fetchGetUserByToken } from "../redux/users";
 import Logout from "./Logout";
 import "./Nav.css";
 

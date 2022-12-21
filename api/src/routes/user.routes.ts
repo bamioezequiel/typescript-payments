@@ -1,7 +1,6 @@
 import { Router } from "express";
-import { changeRole, getUserByToken } from "../controllers/user.controllers";
+import { changeRole, getUserById, getUserByToken } from "../controllers/user.controllers";
 import { checkAuth, checkRoleAuth } from "../middlewares/auth.middlewares";
-import { getUserById } from "../services/user.services";
 
 const router = Router();
 
